@@ -1,12 +1,14 @@
 const asyncHandler = require("express-async-handler");
 
+const Games771 = require("../models/gamesModel");
 
 // @desc: Get games771 collection
 // @route: GET /api/games771
 // @access: Private
 
 const getGames = asyncHandler(async(req, res) => {
-    res.status(200).json( {message: "Get games771 collection"})
+    const games771 = await Games771.find({});
+    res.status(200).json(Games771)
 })
 
 // @desc: Set games771 collection
