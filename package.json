@@ -20,7 +20,8 @@
     "start": "src/backend/server.js",
     "server": "nodemon src/backend/server.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
