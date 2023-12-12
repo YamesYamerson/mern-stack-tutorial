@@ -3,6 +3,7 @@ const playersModel = require("../models/playersModel");
 const mongoose = require("mongoose");
 mongoose.pluralize(null);
 
+// Test code for playersModel
 // async function logPlayers() {
 //     try {
 //         console.log('Fetching players...');
@@ -49,16 +50,37 @@ const setPlayer = asyncHandler(async(req, res) => {
 // @access: Private
 
 const updatePlayer = asyncHandler(async(req, res) => {
-    res.status(200).json( {message: `Update players771 ${req.params.id}`});
-})
+    const player = await playersModel.findById(req.params.id);
+
+    if (!player) {
+        res.status(404);
+        throw new Error("Player not found");
+    }
+
+    // Update player with new values. Only updates fields that are provided in req.body
+    const updatedPlayer = await playersModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+    res.status(200).json(updatedPlayer);
+});
+
 
 // @desc: Delete from players771
 // @route: DELETE /api/games771/players771
 // @access: Private
 
 const deletePlayer = asyncHandler(async(req, res) => {
-    res.status(200).json( {message: `Delete players771 ${req.params.id}`});
-})
+    const player = await playersModel.findById(req.params.id);
+
+    if (!player) {
+        res.status(404);
+        throw new Error("Player not found");
+    }
+
+    await player.remove();
+
+    res.status(200).json({ message: `Deleted player ${req.params.id}` });
+});
+
 
 module.exports = {
     getPlayers,
