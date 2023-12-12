@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use('/api/games771', require('./routes/gameRoutes'));
+app.use('/api/games771/players771', require('./routes/playerRoutes'));
 
 app.use(errorHandler);
 

@@ -8,7 +8,7 @@ const Games771 = require("../models/gamesModel");
 
 const getGames = asyncHandler(async(req, res) => {
     const games771 = await Games771.find({});
-    res.status(200).json(Games771)
+    res.status(200).json(games771)
 })
 
 // @desc: Set games771 collection
