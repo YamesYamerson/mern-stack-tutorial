@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const playersModel = require('../../models/playersModel');  // Adjust path as needed
+const playersModel = require('../../models/playersModel'); // Adjust path as needed
+const asyncHandler = require("express-async-handler");
+mongoose.pluralize(null);
 
 // MongoDB connection
 const connectDB = async () => {
@@ -8,7 +10,9 @@ const connectDB = async () => {
     }
 };
 
-exports.handler = async (event, context) => {
+exports.handler = asyncHandler(async (event, context) => {
+    context.callbackWaitsForEmptyEventLoop = false;
+
     await connectDB();
 
     try {
@@ -23,4 +27,4 @@ exports.handler = async (event, context) => {
             body: JSON.stringify({ message: error.message })
         };
     }
-};
+});
