@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const playerSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     lastName771: {
         type: String,
         required: true
