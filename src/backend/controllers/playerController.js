@@ -69,17 +69,16 @@ const updatePlayer = asyncHandler(async(req, res) => {
 // @access: Private
 
 const deletePlayer = asyncHandler(async(req, res) => {
-    const player = await playersModel.findById(req.params.id);
+    const player = await playersModel.findByIdAndDelete(req.params.id);
 
     if (!player) {
         res.status(404);
         throw new Error("Player not found");
     }
 
-    await player.remove();
-
     res.status(200).json({ message: `Deleted player ${req.params.id}` });
 });
+
 
 
 module.exports = {
