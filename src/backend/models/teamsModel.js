@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
 
 const teamSchema = new mongoose.Schema({
-    lastName771: {
+    teamName771: {
         type: String,
         required: true
     },
-    firstName771: {
+    managerFirstName771: {
         type: String,
         required: true
     },
-    phone771: {
+    managerLastName771: {
         type: String,
         required: true
     },
-    teamPreferences771: [{
+    players771: [{
         type: String,
         required: true
     }]
