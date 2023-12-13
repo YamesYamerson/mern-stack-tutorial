@@ -1,15 +1,9 @@
 const mongoose = require('mongoose');
+const db = require('./config/db');
 const PlayersModel = require('../../models/playersModel'); // Adjust path as needed
 
 // MongoDB connection
-const connectDB = async () => {
-    if (mongoose.connection.readyState !== 1) {
-        await mongoose.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-    }
-};
+
 
 exports.handler = async (event, context) => {
     context.callbackWaitsForEmptyEventLoop = false;
@@ -18,6 +12,7 @@ exports.handler = async (event, context) => {
     try {
         const players = await PlayersModel.find({});
         return {
+
             statusCode: 200,
             body: JSON.stringify(players)
         };
