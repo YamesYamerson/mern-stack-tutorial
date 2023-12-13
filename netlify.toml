@@ -1,2 +1,12 @@
+# netlify.toml
 [build]
-  functions = "netlify/functions"
+  # Directory to run the build command in
+  publish = "build"
+
+  # Command to build your site
+  command = "npm run build"
+
+# Functions settings
+[build.functions]
+  # Directory where Netlify will look for your serverless functions
+  directory = "functions"

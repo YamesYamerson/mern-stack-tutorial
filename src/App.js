@@ -1,5 +1,9 @@
+const server = require('.src/backend/server.js');
 
 function App() {
+  // Call the function to start the server
+  server.start();
+
   return (
     <div className="App">
       <header className="App-header">

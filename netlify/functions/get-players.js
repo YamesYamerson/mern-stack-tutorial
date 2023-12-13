@@ -1,25 +1,25 @@
 const mongoose = require('mongoose');
-const playersModel = require('../../models/playersModel'); // Adjust path as needed
-const asyncHandler = require("express-async-handler");
-mongoose.pluralize(null);
+const PlayersModel = require('../../models/playersModel'); // Adjust path as needed
 
 // MongoDB connection
 const connectDB = async () => {
     if (mongoose.connection.readyState !== 1) {
-        await mongoose.connect(process.env.MONGO_URI);
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
     }
 };
 
-exports.handler = asyncHandler(async (event, context) => {
+exports.handler = async (event, context) => {
     context.callbackWaitsForEmptyEventLoop = false;
-
     await connectDB();
 
     try {
-        const players771 = await playersModel.find({});
+        const players = await PlayersModel.find({});
         return {
             statusCode: 200,
-            body: JSON.stringify(players771)
+            body: JSON.stringify(players)
         };
     } catch (error) {
         return {
@@ -27,4 +27,4 @@ exports.handler = asyncHandler(async (event, context) => {
             body: JSON.stringify({ message: error.message })
         };
     }
-});
+};
